@@ -103,8 +103,6 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 <a href="https://ibb.co/6YRMD2L"><img src="https://i.ibb.co/Q9FgYZt/Captura-de-pantalla-2024-05-30-102111.png" alt="Captura-de-pantalla-2024-05-30-102111" border="0"></a>
 
-<a href="https://ibb.co/6mY4Nzh"><img src="https://i.ibb.co/qdBRxKG/Captura-de-pantalla-2024-05-30-102218.png" alt="Captura-de-pantalla-2024-05-30-102218" border="0"></a>
-
 <a href="https://ibb.co/R2dVPPH"><img src="https://i.ibb.co/XXMvppJ/Captura-de-pantalla-2024-05-30-102244.png" alt="Captura-de-pantalla-2024-05-30-102244" border="0"></a>
 
 # **Credits**
