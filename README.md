@@ -88,6 +88,12 @@ Prerequisites:
     ```bash
    ngrok config add-authtoken YOUR_NGROK_AUTH_TOKEN
 
+# *Create free geolocation API*
+
+   https://ipgeolocation.io
+
+<a href="https://ibb.co/tmPJxxb"><img src="https://i.ibb.co/DVgR887/imagen-2024-05-30-121014500.png" alt="imagen-2024-05-30-121014500" border="0"></a>
+
 
 # **Disclaimer**
 
