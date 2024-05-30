@@ -4,13 +4,13 @@ traceOwl is a tool designed for educational purposes to demonstrate how geolocat
 
 <a href="https://ibb.co/6YRMD2L"><img src="https://i.ibb.co/Q9FgYZt/Captura-de-pantalla-2024-05-30-102111.png" alt="Captura-de-pantalla-2024-05-30-102111" border="0"></a>
 
-*Features*
+# *Features*
 
 Geolocation tracking of users who click on a shared link.
 Customizable image and redirection URL.
 Educational tool to demonstrate the risks of clicking on suspicious links.
 
-*Installation*
+# *Installation*
 
 Prerequisites
 Python 3.x
