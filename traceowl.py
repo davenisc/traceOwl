@@ -21,7 +21,7 @@ def get_geolocation(ip):
 
 @app.route('/')
 def index():
-    user_ip = request.remote_addr
+    user_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
     geolocation_data = get_geolocation(user_ip)
     # Save or process geolocation data as needed
     print(Fore.GREEN + f"Geolocation for {user_ip}: {geolocation_data}")
