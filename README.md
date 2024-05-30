@@ -17,3 +17,11 @@ Prerequisites:
 * Python 3.x
 * pip (Python package installer)
 * ngrok (for exposing the local server to the internet)
+
+# *Download and Install*
+
+1. Clone the repository:
+
+   '''bash
+   git clone https://github.com/davenisc/traceOwl.git
+    cd traceOwl
