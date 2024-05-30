@@ -24,4 +24,22 @@ Prerequisites:
 
    ```bash
    git clone https://github.com/davenisc/traceOwl.git
-    cd traceOwl
+   cd traceOwl
+
+2. Install python venv:
+
+   ```bash
+   apt install python3.11-venv
+
+3. Create and activate the virtual environment:
+
+   ```bash
+   python -m venv traceOwl_venv
+   source traceOwl_venv/bin/activate
+
+4. Install the required libraries:
+
+   ```bash
+   pip install -r requirements.txt
+
+
