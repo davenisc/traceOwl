@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PistaLab Case",
+  "type": "object",
+  "required": ["case_id", "source", "official_channels", "entities", "status"],
+  "properties": {
+    "case_id": {"type": "string"},
+    "title": {"type": "string"},
+    "reward_amount_usd": {"type": ["number", "null"]},
+    "source": {
+      "type": "object",
+      "properties": {
+        "url": {"type": "string"},
+        "agency": {"type": "string"},
+        "captured_at": {"type": "string"}
+      }
+    },
+    "official_channels": {"type": "array", "items": {"type": "object"}},
+    "entities": {"type": "array", "items": {"type": "object"}},
+    "allegations": {"type": "array", "items": {"type": "string"}},
+    "constraints": {"type": "array", "items": {"type": "string"}},
+    "status": {"enum": ["INTAKE", "VALIDATING", "RESEARCHING", "PACKET_READY", "SUBMITTED", "CLOSED", "REJECTED"]}
+  }
+}

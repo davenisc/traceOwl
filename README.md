@@ -142,3 +142,43 @@ If you would like to support this project with a USDT BEP-20 donation, you can s
 
    ```bash
    0x15283841da6b5099d991fd64fdcb302478f4cc5a
+
+---
+
+# PistaLab: Reward Intelligence / Public OSINT Module
+
+traceOwl now includes `pistalab/`, a compliance-first reward-intelligence module for lawful public-source research around official reward/tip notices.
+
+PistaLab is designed to:
+
+* structure official public reward notices into case files,
+* verify official source legitimacy,
+* build safe public search plans,
+* capture public evidence with timestamps and hashes,
+* build entity graphs and confidence scores,
+* generate lead hypotheses with blocked paths,
+* maintain trace memory,
+* draft review-only tip packets.
+
+PistaLab is **not** for doxxing, stalking, phishing, social engineering, private-data collection, or automated submissions.
+
+Quick smoke test:
+
+```bash
+python3 pistalab/pistalab.py intake-text \
+  --case-id sample-official-reward-notice \
+  --title "Sample official reward notice" \
+  --file pistalab/samples/reward-notice-sample.txt
+
+python3 pistalab/pistalab.py validate pistalab/cases/sample-official-reward-notice/case.json
+```
+
+Runtime artifacts under `pistalab/cases/`, `pistalab/evidence/`, `pistalab/outputs/`, and `pistalab/intake/` are ignored by git.
+
+External submission gate:
+
+```text
+APPROVE SUBMISSION: <case_id> to <official channel>
+```
+
+Generic approvals or local workflow approvals do not authorize external submission.
